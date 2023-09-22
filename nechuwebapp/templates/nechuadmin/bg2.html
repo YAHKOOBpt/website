@@ -1,0 +1,141 @@
+{% extends 'nechuadmin/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+
+    .carousel-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+  }
+  
+  .carousel {
+      display: flex;
+      overflow: hidden;
+  }
+  
+  .carousel-item {
+      flex: 0 0 auto;
+      transition: transform 0.5s ease-in-out;
+  }
+  
+  .carousel img {
+      max-width: 100%;
+      height: auto;
+  }
+  
+  /* Responsive styles */
+  @media screen and (max-width: 768px) {
+      .carousel-item {
+          flex: 0 0 100%;
+      }
+  }
+  
+  
+  </style>
+  
+  
+  <h1 class="card-title fw-semibold mb-4" style="font-size:25px;">Manage Background Images</h1>
+  <br>
+  <br>
+  <h5 class="card-title fw-semibold mb-4">Add Background Image 4</h5>
+  
+  <div class="custom-card" style="box-shadow: 2px 2px 15px rgba(188, 116, 165, 0.5); padding: 20px;">
+      <form action="{% url 'add_bg4' %}" enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+
+        <div class="mb-3">
+          <label for="treatmentTitle" class="form-label">Add Quote</label>
+          <input type="text" class="form-control" id="treatmentTitle" aria-describedby="titleHelp" name="title1">
+        </div>
+   
+        <div class="mb-3">
+          <label for="treatmentImage" class="form-label">Background Image</label>
+          <input type="file" class="form-control" id="treatmentImage" name="image">
+        </div>
+  
+        <button type="submit" class="btn" style="background-color:#bc74a5; color:white;">Submit</button>
+      </form>
+  </div>
+  
+    <br>
+    <br>
+    <br>
+    <br>
+    
+    <h5 class="card-title fw-semibold mb-4">View Background Image 4</h5>
+  
+  
+    <div class="container mt-5 mb-4">
+      {% for i in bg4 %}
+      <div class="row justify-content-center mb-5" style="border: 1px solid black; padding: 10px;">
+          <div class="col-md-6">
+              <img src="{{ i.imageURL }}" class="img-fluid" alt="Responsive Image">
+              <br><br>
+              <h4 class="text-center" style="color: #bc74a5;"><span style="color:black;">Quote:</span> {{ i.title1 }}</h4>
+          </div>
+          <div class="row">
+              <div class="d-flex justify-content-between">
+                  <a href="{% url 'edit_bg4' i.pk %}" class="btn btn-square" style="background-color:#bc74a5; color:white;"><i class="ti ti-pencil fs-5"></i> Edit</a>
+                </div>
+          </div>
+      </div>
+      {% endfor %}
+  </div>
+  
+  <br>
+  <br>
+  <br>
+
+  <h5 class="card-title fw-semibold mb-4">Add Background Image 5</h5>
+  
+  <div class="custom-card" style="box-shadow: 2px 2px 15px rgba(188, 116, 165, 0.5); padding: 20px;">
+      <form action="{% url 'add_bg5' %}" enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+
+        <div class="mb-3">
+          <label for="treatmentTitle" class="form-label">Add Content</label>
+          <input type="text" class="form-control" id="treatmentTitle" aria-describedby="titleHelp" name="title1">
+        </div>
+   
+        <div class="mb-3">
+          <label for="treatmentImage" class="form-label">Background Image</label>
+          <input type="file" class="form-control" id="treatmentImage" name="image">
+        </div>
+  
+        <button type="submit" class="btn" style="background-color:#bc74a5; color:white;">Submit</button>
+      </form>
+  </div>
+  
+    <br>
+    <br>
+    <br>
+    <br>
+    
+    <h5 class="card-title fw-semibold mb-4">View Background Image 5</h5>
+  
+  
+    <div class="container mt-5 mb-4">
+      {% for i in bg5 %}
+      <div class="row justify-content-center mb-5" style="border: 1px solid black; padding: 10px;">
+          <div class="col-md-6">
+              <img src="{{ i.imageURL }}" class="img-fluid" alt="Responsive Image">
+              <br><br>
+              <h6 class="text-center" style="color: #bc74a5;"><span style="color:black;">Content:</span> {{ i.title1 }}</h6>
+          </div>
+          <div class="row">
+              <div class="d-flex justify-content-between">
+                  <a href="{% url 'edit_bg5' i.pk %}" class="btn btn-square" style="background-color:#bc74a5; color:white;"><i class="ti ti-pencil fs-5"></i> Edit</a>
+                </div>
+          </div>
+      </div>
+      {% endfor %}
+  </div> 
+  
+  <br>
+  <br>
+  <br>
+{% endblock %}

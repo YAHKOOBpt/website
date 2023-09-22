@@ -1,0 +1,40 @@
+{% extends 'nechuadmin/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+    <h2 style="text-align: center;" class="pt-5 pb-5">Edit Youtube Videos</h2>
+</div>
+
+<form action="{% url 'edit_youtube' get_youtube.pk %}" method="POST" enctype="multipart/form-data" style="width: 500px; margin: auto;">
+    {% csrf_token %}
+    <div class="form-group">
+        <input type="text" class="form-control" name="title" value="{{ get_youtube.title }}" placeholder="Title">
+    </div>
+    <br>
+    <div class="form-group">
+        <input type="url" class="form-control" id="youtubeLink" name="youtube" value="{{ get_youtube.youtube_link }}">
+    </div>
+    <br>
+    Current Category:{{ get_youtube.category.category }}
+    
+    <div class="form-group">
+        <label for="treatmentDropdown" class="form-label">Select new category</label>
+        <select class="form-select" id="treatmentDropdown" name="category">
+          {% for i in categories %}
+          <option value="{{i.category}}">{{i.category}}</option>
+          {% endfor %}
+          <!-- Add more options as needed -->
+        </select>
+    <div>
+
+    <br>
+    <div class="form-group text-center">
+        <button type="submit" class="btn btn-primary" style="width: 200px;"><i class="fa fa-plus"></i> Update</button>
+    </div>
+</form>
+
+
+
+{% endblock %}

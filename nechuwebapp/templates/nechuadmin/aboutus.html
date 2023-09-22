@@ -1,0 +1,104 @@
+{% extends 'nechuadmin/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+
+    .carousel-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+  }
+  
+  .carousel {
+      display: flex;
+      overflow: hidden;
+  }
+  
+  .carousel-item {
+      flex: 0 0 auto;
+      transition: transform 0.5s ease-in-out;
+  }
+  
+  .carousel img {
+      max-width: 100%;
+      height: auto;
+  }
+  
+  /* Responsive styles */
+  @media screen and (max-width: 768px) {
+      .carousel-item {
+          flex: 0 0 100%;
+      }
+  }
+  
+  
+  </style>
+  
+  
+  <h1 class="card-title fw-semibold mb-4" style="font-size:25px;">Manage About Page</h1>
+  <br>
+  <br>
+  <h5 class="card-title fw-semibold mb-4">Add Details</h5>
+  
+  <div class="custom-card" style="box-shadow: 2px 2px 15px rgba(188, 116, 165, 0.5); padding: 20px;">
+      <form action="{% url 'add_aboutus' %}" enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+
+        <div class="mb-3">
+        <label for="treatmentTitle" class="form-label">Add Paragraph 1</label>
+        <textarea class="form-control" id="treatmentTitle" aria-describedby="titleHelp" name="title1"></textarea>
+        </div>
+
+  
+        <div class="mb-3">
+            <label for="treatmentTitle" class="form-label">Add Paragraph 2</label>
+            <textarea class="form-control" id="treatmentTitle" aria-describedby="titleHelp" name="title2"></textarea>
+        </div>
+          
+  
+        <div class="mb-3">
+          <label for="treatmentImage" class="form-label">Background Image</label>
+          <input type="file" class="form-control" id="treatmentImage" name="image">
+        </div>
+  
+  
+  
+        <button type="submit" class="btn" style="background-color:#bc74a5; color:white;">Submit</button>
+      </form>
+    </div>
+  
+    <br>
+    <br>
+    <br>
+    <br>
+    
+    <h5 class="card-title fw-semibold mb-4">View About Page</h5>
+  
+  
+    <div class="container mt-5 mb-4">
+      {% for i in aboutus %}
+      <div class="row justify-content-center mb-5" style="border: 1px solid black; padding: 10px;">
+          <div class="col-md-6">
+              <img src="{{ i.imageURL }}" class="img-fluid" alt="Responsive Image">
+              <br><br>
+              <h6 class="text-center" style="color: #bc74a5;">Para 1: {{ i.title1 }}</h3>
+              <h6 class="text-center" style="color: #1853a1;">Para 2: {{ i.title2 }}</h4>
+          </div>
+          <div class="row">
+              <div class="d-flex justify-content-between">
+                  <a href="{% url 'edit_aboutus' i.pk %}" class="btn btn-square" style="background-color:#bc74a5; color:white;"><i class="ti ti-pencil fs-5"></i> Edit</a>
+                </div>
+          </div>
+      </div>
+      {% endfor %}
+  </div>
+  
+  <br>
+  <br>
+  <br>
+
+
+  {% endblock %}

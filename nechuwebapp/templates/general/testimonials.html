@@ -1,0 +1,140 @@
+{% extends 'general/main.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="container">
+    <div class="row" style="padding-top: 1%;">
+        <div class="col-lg">
+            <iframe width="100%" height="400" src="https://www.youtube.com/embed/-E6txtJHCRs">
+            </iframe>
+        </div>
+        <div class="col-lg">
+            <iframe width="100%" height="400" src="https://www.youtube.com/embed/b9Fr98cLR74">
+            </iframe>
+        </div>
+    </div>
+</div>
+
+<style>
+
+   /* caro start  */
+
+   .products .product-slider{
+        padding: 1rem;
+       
+      }
+
+      .products .product-slider:first-child{
+        margin-bottom: 2rem;
+      }
+      .products .product-slider .box{
+    
+        background: #e9ecef;
+        border-radius: .5rem;
+    /* text-align: center; */
+        padding: 3rem 2rem 5rem;
+    /* outline-offset: -1rem; */
+    /* outline: var(--outline); */
+    /* box-shadow: var(--box-shadow); */
+        transition: .2s linear;
+      }
+
+      .products .product-slider .box:hover{
+        outline-offset: 0rem;
+        outline: var(--outline-hover);
+      }
+      .products .product-slider img{
+        position: absolute;
+        top: 20px;
+        width: 60px;
+        height: 60px;
+        border-radius: 30px;
+      }
+      .products .product-slider h3{
+        position: relative;
+        top: 43px;
+        font-size: 25px;
+      }
+      .products .product-slider p{
+        position: relative;
+        top: 47px;
+        font-size: 15px;
+
+      }
+      
+      
+
+      /* caro ends  */
+
+
+     
+
+
+        </style>
+      
+    </head>
+    <body>
+      <section class="products" id="products">
+        
+        
+        <div class="swiper product-slider">
+          
+            <div class="swiper-wrapper">
+              {% for i in reviews %}
+                <div class="swiper-slide box">
+                    <img src="{{ i.imageURL }}" alt="">
+                    <h3>{{ i.name }}</h3>
+                    <p>{{ i.review }}</p>
+                </div>
+              {% endfor %}
+              
+
+                
+            </div>
+          
+        </div>
+       
+      </section>
+
+
+      <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+      <script>
+        var swiper = new Swiper(".product-slider", {
+            loop:true,
+            spaceBetween: 20, 
+            autoplay: {
+                delay:6500,
+                disableOnInteraction: false,
+            },
+            centeredSlides:true,
+            breakpoints:{
+              0: {
+                slidesPerView: 1,      
+              },
+              768: {
+                slidesPerView: 2,     
+              },
+              1020: {
+                slidesPerView: 3, 
+              },  
+              1100: {
+                slidesPerView: 4, 
+              },   
+
+            },
+          });
+      </script>
+      
+    </body>
+       
+
+
+          
+  
+          
+  
+         
+          
+
+{% endblock %}
